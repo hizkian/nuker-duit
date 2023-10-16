@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  database:
+    image: "postgres:16.0-alpine3.18"
+    ports: 
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: 'nuker_duit'
+      POSTGRES_PASSWORD: 'nuker_duit_123'
+      POSTGRES_DB: 'nukerduit'
+    networks:
+      - backend
+    volumes:
+      - database:/var/lib/postgresql/data/
+
+volumes:
+  database:
+
+networks:
+  backend:
+    driver: bridge
