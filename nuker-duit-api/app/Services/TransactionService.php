@@ -16,4 +16,14 @@ class TransactionService
     public function createTransaction($userId, $transactionType, $currencyId, $amount) {
         $this->transactionRepository->createTransaction($userId, $transactionType, $currencyId, $amount);
     }
+    
+    public function getTransactionsByUserId(int $userId, string $transactionType, int $currencyId) {
+        return $this->transactionRepository->getTransactionsByUserId($userId, $transactionType, $currencyId);
+    }
+
+    public function isBalanceEnough($userId, $currencyId, $amount) {
+        $userBalance = $this->transactionRepository->getBalanceByUserId($userId, $currencyId);
+
+        return $userBalance >= $amount;
+    }
 }
