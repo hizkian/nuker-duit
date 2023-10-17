@@ -19,11 +19,12 @@ class TransactionController extends Controller
         $this->validate($request, [
             'currencyId' => 'required',
             'amount' => 'required',
+            'userId' => 'required',
         ]);
 
-        $trxData = $request->only(['currencyId', 'amount']);
+        $trxData = $request->only(['userId', 'currencyId', 'amount']);
 
-        $this->transactionService->createTransaction(1, "buy", $trxData['currencyId'], $trxData['amount']);
+        $this->transactionService->createTransaction($trxData['userId'], "buy", $trxData['currencyId'], $trxData['amount']);
 
         return response()->json(["message" => "success"], 201);
     }

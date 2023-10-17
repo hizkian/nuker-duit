@@ -19,4 +19,4 @@ use App\Http\Controllers\TransactionController;
 Route::post('/users/login', [UserController::class, 'login']);
 Route::post('/users/logout', [UserController::class, 'logout']);
 Route::get('/exchange-rates', [ExchangeRateController::class, 'getExchangeRates']);
-Route::post('/transactions/buy', [TransactionController::class, 'createBuyTransaction']);
+Route::middleware(['checkBearerToken'])->post('/transactions/buy', [TransactionController::class, 'createBuyTransaction']);
