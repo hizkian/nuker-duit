@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();;
+            $table->timestamp('deleted_at')->nullable();
+
             $table->string('username');
             $table->string('password');
+
             $table->index('username');
             $table->index('password');
         });
