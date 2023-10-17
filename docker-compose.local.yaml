@@ -14,19 +14,6 @@ services:
       - backend
     volumes:
       - database:/var/lib/postgresql/data/
-  api:
-    build:
-      context: ./nuker-duit-api
-      dockerfile: Dockerfile
-    volumes:
-      - ./nuker-duit-api:/var/www/html
-    ports:
-      - "8000:8000"
-    depends_on:
-      database:
-        condition: service_healthy
-    networks:
-      - backend
 
 volumes:
   database:
