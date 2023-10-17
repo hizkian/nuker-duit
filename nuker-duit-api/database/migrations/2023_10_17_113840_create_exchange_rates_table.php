@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
-            $table->timestamp('deleted_at');
+            $table->timestamp('deleted_at')->nullable();
             $table->integer('currency_id');
             $table->float('idr_rate');
 
