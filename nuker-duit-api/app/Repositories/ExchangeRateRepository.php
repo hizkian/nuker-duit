@@ -20,7 +20,7 @@ class ExchangeRateRepository
 
     public function getExchangeRates()
     {
-        $query = "SELECT * FROM exchange_rates WHERE deleted_at IS NULL";
+        $query = "SELECT currency_id, idr_rate FROM exchange_rates WHERE deleted_at IS NULL";
 
         $exchangeRates = DB::select($query);
 
@@ -32,5 +32,14 @@ class ExchangeRateRepository
         $query = "UPDATE exchange_rates SET idr_rate = {$idrRate}, updated_at = NOW() WHERE currency = {$currencyId}";
 
         DB::statement($query);
+    }
+
+    public function getExchangeRatesWithName()
+    {
+        $query = "SELECT er.currency_id, c.name, er.idr_rate FROM exchange_rates er JOIN currencies c ON er.currency_id = c.id  WHERE deleted_at IS NULL";
+
+        $exchangeRates = DB::select($query);
+
+        return $exchangeRates;
     }
 }

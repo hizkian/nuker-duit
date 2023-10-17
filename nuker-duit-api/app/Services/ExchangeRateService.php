@@ -19,6 +19,12 @@ class ExchangeRateService
         $this->currencyRepository = $currencyRepository;
     }
 
+    public function getExchangeRatesWithName() {
+        $exchangeRates = $this->exchangeRateRepository->getExchangeRatesWithName();
+
+        return $exchangeRates;
+    }
+
     public function updateExchangeRates() {
         $currencies = $this->currencyRepository->getCurrencies();
 
