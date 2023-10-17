@@ -20,7 +20,7 @@ class UserController extends Controller
         $this->userSessionService = $userSessionService;
     }
 
-    public function getUser(Request $request)
+    public function login(Request $request)
     {
         $this->validate($request, [
             'username' => 'required',
@@ -55,5 +55,19 @@ class UserController extends Controller
         } 
 
         return response()->json("Invalid credentials", 401);
+    }
+
+    public function logout(Request $request)
+    {
+        $token = $request->bearerToken();
+        JWTAuth::setToken($token);
+
+        $lastUserSession = $this->userSessionService->getLasUserSessionByToken($token);
+
+        if($lastUserSession && $lastUserSession->action == "login") {
+            $this->userSessionService->createUserSession($lastUserSession->user_id, $token, "logout");
+        }
+
+        return response()->json(['message'=>"success"], 200);
     }
 }

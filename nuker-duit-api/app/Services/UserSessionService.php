@@ -22,4 +22,9 @@ class UserSessionService
     {
         return $this->userSessionsRepository->createUserSession($userId, $token, $action);
     }
+
+    public function getLasUserSessionByToken(string $token)
+    {
+        return $this->userSessionsRepository->getLasUserSessionByToken($token);
+    }
 }
