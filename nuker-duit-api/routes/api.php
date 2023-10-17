@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExchangeRateController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,4 @@ use App\Http\Controllers\ExchangeRateController;
 Route::post('/users/login', [UserController::class, 'login']);
 Route::post('/users/logout', [UserController::class, 'logout']);
 Route::get('/exchange-rates', [ExchangeRateController::class, 'getExchangeRates']);
+Route::post('/transactions/buy', [TransactionController::class, 'createBuyTransaction']);
